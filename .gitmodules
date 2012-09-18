@@ -1,0 +1,9 @@
+[submodule "backbone"]
+	path = backbone
+	url = https://github.com/documentcloud/backbone.git
+[submodule "underscore"]
+	path = underscore
+	url = https://github.com/documentcloud/underscore.git
+[submodule "ttObjects"]
+	path = ttObjects
+	url = https://github.com/ttdevelopers/ttObjects.git

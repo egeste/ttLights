@@ -1,0 +1,17 @@
+<div class="light-name">
+  <abbr class="x"></abbr>
+  Light <%= light.collection.models.indexOf(light) %>
+</div>
+<div class="detail">
+  <div class="position section">
+    <div>Position:</div>
+    <input name="top" value="<%= light.get('top') %>" placeholder="Top" />
+    <input name="left" value="<%= light.get('left') %>" placeholder="Left" />
+    <input name="right" value="<%= light.get('right') %>" placeholder="Right" />
+    <input name="bottom" value="<%= light.get('bottom') %>" placeholder="Bottom" />
+  </div>
+  <div class="color section">
+    <div>Color:</div>
+    <input name="color" value="<%= _.rgbToHex(light.get('color')) %>" placeholder="Color" />
+  </div>
+</div>

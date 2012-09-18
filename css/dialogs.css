@@ -1,0 +1,71 @@
+/* Dialog components */
+.ttLights.modal abbr.x {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background-position: 0 12px;
+  background-image:url(https://s3.amazonaws.com/static.turntable.fm/images/playlist/x_button_sprite.png);
+}
+
+.ttLights.modal abbr.x:hover {
+  background-position: 0 0;
+}
+
+.ttLights.modal p {
+  text-align: center;
+}
+
+.ttLights.modal form {
+  text-align: center;
+}
+
+/* Welcome dialog */
+.ttLights.welcome img {
+  display: block;
+  margin: 10px auto;
+}
+
+.ttLights.welcome p,
+.ttLights.welcome ul {
+  margin: 15px inherit;
+}
+
+.ttLights.welcome ul li {
+  margin-left: 20px;
+}
+
+/* Settings dialog */
+.ttLights.settings abbr.x {
+  margin: 3px;
+  float: right;
+}
+
+.ttLights.settings ul li {
+  padding: 5px;
+  background: #999;
+  margin-bottom: 5px;
+  list-style-type: none;
+  border: 1px solid #333;
+}
+
+.ttLights.settings ul li.add-light {
+  text-align: center;
+}
+
+.ttLights.settings ul li.add-light,
+.ttLights.settings ul li .light-name {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.ttLights.settings ul li.add-light:hover {
+  background-color: #ccc;
+}
+
+.ttLights.settings ul li .detail {
+  display: none;
+}
+
+.ttLights.settings ul li.open .detail {
+  display: block;
+}

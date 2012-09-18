@@ -1,0 +1,24 @@
+<div class="close-x"></div>
+<div class="content-scroller" style="max-height:500px;">
+  <div class="content">
+    <h2 class="title">ttLights</h2>
+    <div class="title">Build: <%= tt.lights.build.toUTCString() %></div>
+    <h3>Lights</h3>
+    <ul class="lights"></ul>
+    <h3>Lasers</h3>
+    <ul class="lasers"></ul>
+    <h3>Import &amp; Export</h3>
+    <input type="file" name="import" />
+    <div style="text-align:center;">
+      <button class="import">Import Settings</button>
+      <button class="export">Export Settings</button>
+    </div>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+      <h3>Love this plugin? Buy me a beer :3</h3>
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="NWHAFR3G9KV6J">
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+      <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+  </div>
+</div>

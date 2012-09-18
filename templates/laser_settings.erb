@@ -1,0 +1,21 @@
+<div class="light-name">
+  <abbr class="x"></abbr>
+  Laser <%= laser.collection.models.indexOf(laser) %>
+</div>
+<div class="detail">
+  <div class="position section">
+    <div>Position:</div>
+    <input name="top" value="<%= laser.get('top') %>" placeholder="Top" />
+    <input name="left" value="<%= laser.get('left') %>" placeholder="Left" />
+    <input name="right" value="<%= laser.get('right') %>" placeholder="Right" />
+    <input name="bottom" value="<%= laser.get('bottom') %>" placeholder="Bottom" />
+  </div>
+  <div class="color section">
+    <div>Color:</div>
+    <input name="color" value="<%= _.rgbToHex(laser.get('color')) %>" placeholder="Color" />
+  </div>
+  <div class="beams section">
+    <div>Beams:</div>
+    <input name="beams" value="<%= laser.get('beams') %>" placeholder="Beams" />
+  </div>
+</div>

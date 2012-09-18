@@ -1,0 +1,7 @@
+.overlay input[type=file] {
+  padding: 0 !important;
+  color: white !important;
+  border: none !important;
+  margin: 10px 5px !important;
+  background: none !important;
+}

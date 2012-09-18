@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# Configure the build script
+directory='build'
+project='tt.lights'
+filename="${project}.js"
+minifier='uglifyjs --no-dead-code --verbose' # sudo npm install uglify-js -g
+jsFiles=(
+  'underscore/underscore.js' # not yet included in turntable's js
+  'backbone/backbone.js' # not yet included in turntable's js
+  'ttObjects/ttObjects.js' # necessary for fun things
+  'mixins.js'
+  'views/*.js'
+  'model/*.js'
+  'app.js'
+)
+
+# Check the input and the env
+if [ -z $1 ]; then echo 'No option specified'; exit 1; fi
+if [ ! -e $filename ]; then echo 'Script must be run from the project root'; exit 1; fi
+
+# Build the extension and quit
+if [[ $1 == 'extension' ]]; then
+  echo "[+] Building Chrome extension"
+  target="${directory}/${project}.zip"
+  zip -r $target extension/*
+  exit 0
+fi
+
+# Otherwise, figure out what we're doing
+if [[ $1 == 'test' ]]; then
+  echo "[*] This is a test build"
+  filename="${project}.test.js"
+  build_time=540374400000
+elif [[ $1 == 'release' ]]; then
+  echo "[*] This is a release build"
+fi
+
+# If we were passed a second arg, assume it's a build_time
+if [[ -n $2 ]]; then
+  build_time=$2
+fi
+
+# Do some sanity checking
+mkdir -p $directory # Make sure the target dir exists
+if [ -z $build_time ]; then build_time="$(date +%s)000"; fi # Make sure there's a build_time
+echo "[*] build_time is ${build_time}"
+
+# First write the header/bootstrap file
+target="${directory}/${filename}"
+echo "[+] Writing ${filename}"
+cat "${project}.js" > $target
+
+# Then the packed resources
+echo "[+] Writing resources"
+echo "${project}.build = new Date(${build_time});" >> $target
+echo "${project}.css = '$(cat css/*.css | tr -d '\n' | openssl enc -base64 | tr -d '\n')'" >> $target
+for file in `ls templates`; do
+  echo "[+] Writing ${file}"
+  data=`cat templates/${file} | tr -d '\n'`
+  echo "${project}.templates.${file%.*} = '${data//\'/\'}';" >> $target
+done
+
+# Add all the files from our file list
+for file in ${jsFiles[@]}; do jsFileList="${jsFileList}${file} "; done # Turn the js file list into a space delimited string
+echo "[+] Writing $jsFileList"
+cat $jsFileList >> $target
+
+# Then minify it
+echo "[+] Minifying ${directory}/${project}.min.js"
+$minifier < $target > "${directory}/${project}.min.js"
